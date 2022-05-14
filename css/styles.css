@@ -112,11 +112,11 @@ img {
   padding-bottom: 32px;
 
   transition-property: color;
-  transition-delay: var(--transition-duration);
+  transition-duration: var(--transition-duration);
   transition-timing-function: var(--timing-bezier);
   position: relative;
 }
-.nav-item::after {
+.current::after {
   content: " ";
   width: 100%;
   height: 4px;
@@ -128,15 +128,8 @@ img {
   margin: 0;
   padding: 0;
   background-color: var(--accent-color);
-  opacity: 0;
-  transition-property: opacity;
-  transition-duration: var(--transition-duration);
-  transition-timing-function: var(--timing-bezier);
 }
 
-.nav-item:hover::after {
-  opacity: 1;
-}
 .list + .list {
   margin-left: 50px;
 }
@@ -243,7 +236,7 @@ img {
       rgba(47, 48, 58, 0.4),
       rgba(47, 48, 58, 0.4)
     ),
-    url(../img/hero/Img\ \(1\).jpg);
+    url(../img/hero/Img\\(1\).jpg);
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -508,9 +501,9 @@ button:focus {
   color: #ffffff;
   fill: #afb1b8;
 
-  transition-property: background-color;
-  transition-duration: var(--transition-duration);
-  transition-timing-function: var(--timing-bezier);
+  transition-property: background-color, fill;
+  transition-duration: var(--transition-duration), var(--transition-duration);
+  transition-timing-function: var(--timing-bezier), var(--timing-bezier);
 }
 
 .team-link:hover {
@@ -554,9 +547,9 @@ button:focus {
   color: #afb1b8;
   fill: currentColor;
 
-  transition-property: color;
-  transition-duration: var(--transition-duration);
-  transition-timing-function: var(--timing-bezier);
+  transition-property: color, border;
+  transition-duration: var(--transition-duration), var(--transition-duration);
+  transition-timing-function: var(--timing-bezier), var(--timing-bezier);
 }
 .costumer-link:hover {
   color: var(--accent-color);
@@ -689,17 +682,17 @@ address {
   left: 50%;
   transform: translate(-50%, -50%);
 
-  width: 1600px;
-  height: 1024px;
+  width: 100%;
+  height: 100%;
 
- 
   background-color: rgba(0, 0, 0, 0.2);
 
-  
+  opacity: 1;
+  transition: opacity 250ms var(--timing-bezier);
 }
-.backdrop.is-hidden{
-opacity: 0;
-pointer-events: none;
+.backdrop.is-hidden {
+  opacity: 0;
+  pointer-events: none;
 }
 .modal {
   position: absolute;
@@ -714,23 +707,18 @@ pointer-events: none;
   border-radius: 4px;
   background-color: rgba(255, 255, 255, 1);
 
-
-transition-duration: var(--transition-duration);
-transition-timing-function: var(--timing-bezier);
-
+  transition-duration: 1000ms;
+  transition-timing-function: var(--timing-bezier);
 }
-.modal-btn{
+.modal-btn {
   display: block;
   width: 30px;
   height: 30px;
   border-radius: 50%;
   margin-left: auto;
   padding: 0;
-  background-color:transparent;
+  background-color: transparent;
   border: 1px solid var(--secondary-text-color);
-  
-
-
 }
 
 /* -------------------------------- 
@@ -762,12 +750,6 @@ transition-timing-function: var(--timing-bezier);
   padding-top: 0;
   margin-top: 0;
 }
-/* .item-btn:hover,
-.item-btn:focus {
-  /* background-color: var(--accent-color);
-  color: var(--button-text-color);
-  border-radius: 4px;
-}  удалить работает и без этого*/
 
 .portolio-button {
   display: inline-block;
@@ -786,9 +768,11 @@ transition-timing-function: var(--timing-bezier);
   font-size: 16px;
   line-height: 1.62;
 
-  transition-property: background-color, color;
-  transition-duration: var(--transition-duration, --transition-duration);
-  transition-timing-function: var(--timing-bezier, --timing-bezier);
+  transition-property: background-color, color, box-shadow;
+  transition-duration: var(--transition-duration), var(--transition-duration),
+    var(--transition-duration);
+  transition-timing-function: var(--timing-bezier), var(--timing-bezier),
+    var(--timing-bezier);
 }
 
 .portolio-button:hover,
@@ -802,7 +786,7 @@ transition-timing-function: var(--timing-bezier);
     0px 2px 2px rgba(0, 0, 0, 0.12);
 }
 
-.portolio-button.current {
+.portolio-button.current-btn {
   color: var(--button-text-color);
   background-color: var(--button-bg-color);
   box-shadow: 0px 3px 1px rgba(0, 0, 0, 0.1), 0px 1px 2px rgba(0, 0, 0, 0.08),
@@ -821,53 +805,59 @@ transition-timing-function: var(--timing-bezier);
   padding: 0;
 }
 .porfolio-item {
+  position: relative;
+  transition-property: transform;
+  transition-duration: var(--transition-duration);
+  transition-timing-function: var(--timing-bezier);
+
   width: 370px;
   margin-right: 30px;
   margin-bottom: 30px;
-  position: relative;
 }
 
 .potfolio-link {
   display: block;
-  
 
   transition-property: box-shadow;
   transition-duration: var(--transition-duration);
   transition-timing-function: var(--timing-bezier);
 }
 
-
+.portfolio-jpg {
+  position: relative;
+  overflow: hidden;
+}
 
 .text-overlay {
   position: absolute;
-  top:0;
+  top: 0;
+
+  width: 100%;
+  height: 100%;
 
   margin: 0;
   padding: 63px 24px;
-  
+
   font-size: 18px;
   line-height: 1.56;
   color: #ffffff;
   background-color: rgba(33, 150, 243, 0.9);
-  opacity: 0;
+  opacity: 1;
   transform: translateY(100%);
- 
-  transition-property:transform;
+  transition-property: transform;
   transition-duration: var(--transition-duration);
   transition-timing-function: var(--timing-bezier);
-  
 }
 
-.porfolio-item:hover .text-overlay{
+.porfolio-item:hover .text-overlay {
   opacity: 1;
-  transform: translatey(0%);
+  transform: translateY(0%);
 }
 
 .potfolio-link:hover,
-.potfolio-link:focus{
+.potfolio-link:focus {
   box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.12), 0px 4px 4px rgba(0, 0, 0, 0.06),
     1px 4px 6px rgba(0, 0, 0, 0.16);
-  
 }
 .porfolio-item:nth-of-type(3n-2) {
   margin-left: 0;
